@@ -8,7 +8,12 @@ from typing import Any
 
 load_dotenv()
 
-client = AsyncGroq(api_key=os.environ["GROQ_API_KEY"])
+
+def _get_client() -> AsyncGroq:
+    api_key = os.getenv("GROQ_API_KEY")
+    if not api_key:
+        raise RuntimeError("Missing GROQ_API_KEY environment variable")
+    return AsyncGroq(api_key=api_key)
 
 MAIN_MODEL = "llama-3.3-70b-versatile"
 FAST_MODEL = "llama-3.1-8b-instant"
@@ -166,6 +171,7 @@ async def run_layout_agent(
 ) -> dict[str, Any]:
 
     slim = _slim_json(current_json)
+    client = _get_client()
 
     messages = [{"role": "system", "content": SYSTEM_PROMPT}]
 

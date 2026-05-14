@@ -1,8 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import Any
-import json
 from agent import run_layout_agent
 
 app = FastAPI(title="Layout Agent API")
@@ -17,7 +16,7 @@ app.add_middleware(
 class ChatRequest(BaseModel):
     instruction: str
     current_json: dict[str, Any]
-    history: list[dict[str, str]] = []
+    history: list[dict[str, str]] = Field(default_factory=list)
 
 class ChatResponse(BaseModel):
     updated_json: dict[str, Any]
