@@ -1,0 +1,88 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* Core palette */
+  --bg:         #080810;
+  --bg-2:       #0d0d1a;
+  --surface:    #10101e;
+  --surface-2:  #16162a;
+  --surface-3:  #1e1e32;
+  --border:     #252538;
+  --border-light: #303050;
+
+  /* Accent — electric violet-gold */
+  --accent:       #a78bfa;
+  --accent-2:     #f0e040;
+  --accent-glow:  rgba(167,139,250,0.18);
+  --accent-dim:   rgba(167,139,250,0.10);
+  --gold:         #f0e040;
+  --gold-dim:     rgba(240,224,64,0.10);
+
+  /* Semantic */
+  --text:         #e8e8f0;
+  --text-muted:   #5a5a7a;
+  --text-dim:     #8888aa;
+  --red:          #ff4466;
+  --green:        #44ffaa;
+  --blue:         #60a5fa;
+  --orange:       #fb923c;
+
+  /* Typography */
+  --font-sans:    'Inter', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', 'Fira Code', monospace;
+  --font-display: 'Syne', sans-serif;
+
+  /* Radii */
+  --r-sm:  4px;
+  --r-md:  8px;
+  --r-lg:  14px;
+}
+
+html, body, #root {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  overflow: hidden;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+button {
+  cursor: pointer;
+  font-family: var(--font-sans);
+  border: none;
+  outline: none;
+  transition: all 0.15s ease;
+}
+button:disabled { cursor: not-allowed; }
+
+textarea, input {
+  font-family: var(--font-mono);
+  outline: none;
+}
+
+/* Animations */
+@keyframes pulse {
+  0%, 100% { opacity: 0.3; transform: scale(0.75); }
+  50%       { opacity: 1;   transform: scale(1); }
+}
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 0 0 var(--accent-glow); }
+  50%       { box-shadow: 0 0 20px 4px var(--accent-glow); }
+}
