@@ -50,7 +50,8 @@ Each instruction builds on the previous state — full conversation history is m
 cd layout-agent/backend
 
 # Copy and fill in your Groq key
-copy .env.example .env
+cp .env.example .env          # Mac/Linux
+# copy .env.example .env      # Windows
 # Edit .env: GROQ_API_KEY=gsk_...
 
 # Install dependencies
